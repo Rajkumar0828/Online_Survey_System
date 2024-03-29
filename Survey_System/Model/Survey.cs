@@ -8,9 +8,10 @@
        
         public DateTime CreatedAt { get; set; }
 
-        
+        public string urlid { get; set; }
         public List<Response> Responses { get;  }
         public List<Question> Questions { get;  }
+
 
         
     }

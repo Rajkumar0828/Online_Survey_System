@@ -8,7 +8,7 @@ namespace Survey_System
         public int QuestionId { get; set; }
         public DateTime? SubmittedAt { get; set; }
         public int UserId { get; set; }
-        public SurveyUser Users { get; set; }
+        
         public List<string> Answers { get; set; }
     }
 }

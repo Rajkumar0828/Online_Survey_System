@@ -19,7 +19,7 @@ namespace Survey_System
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
-
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
             builder.Services.AddEndpointsApiExplorer();
             #region CORS setting for API

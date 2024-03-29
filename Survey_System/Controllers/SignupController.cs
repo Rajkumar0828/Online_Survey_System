@@ -23,31 +23,32 @@ namespace Survey_System.Controllers
         {
             SurveyUser user1 = new SurveyUser()
             {
-                
                 UserName = user.UserName,
                 UserEmail = user.UserEmail,
                 Password = user.Password,
-
             };
 
-            if (_context.Users.Any(user => user.UserEmail == user1.UserEmail))
+            if (_context.Users.Any(u => u.UserEmail == user1.UserEmail))
             {
-                return Ok();
-
+                return BadRequest("User already exists");
             }
 
             _context.Users.Add(user1);
+            _context.SaveChanges();
 
-            if (_context.SaveChanges() > 0)
+            // Access the UserId after saving changes
+            var userId = user1.SurveyUserID;
+
+            if (userId == 0)
             {
-                SurveyUser resuser = _context.Users.FirstOrDefault(user => user.UserName == user1.UserName)!;
-
                 return BadRequest("Internal Server Error ! please try again later");
             }
 
-            return Ok();
-
+            return Ok(new { UserId = userId });
         }
+
+
+
 
     }
 }
